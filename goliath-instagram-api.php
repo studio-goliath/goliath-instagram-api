@@ -50,7 +50,7 @@ function gins_get_instagram_last_picture(){
 
             $instagram_last_picture = json_decode( wp_remote_retrieve_body( $instagram_last_picture_get ) );
 
-            set_transient( 'instagram_last_picture', $instagram_last_picture, DAY_IN_SECONDS );
+            set_transient( 'instagram_last_picture', $instagram_last_picture, HOUR_IN_SECONDS );
 
         }
     }

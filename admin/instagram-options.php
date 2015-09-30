@@ -114,6 +114,8 @@ class Goliath_Instagram_Api_Option{
 
                     update_option( 'gins_client_access_token', $acces_token_response->access_token );
 
+                    update_option( 'gins_client_user_name', $acces_token_response->user->username );
+
                     $this->admin_notice = ( object ) array(
                         'code'         => '200',
                         'error_message' => __('You are authenticated', 'goliath-instagram-api'),
@@ -151,10 +153,11 @@ class Goliath_Instagram_Api_Option{
 
 
         $gins_client_access_token = get_option( 'gins_client_access_token' );
+        $gins_client_user_name = get_option( 'gins_client_user_name' );
 
         if( $gins_client_access_token ){
 
-            echo '<p>' . __('You are authenticated', 'goliath-instagram-api') . '</p>';
+            echo '<p>' . sprintf( __('You are authenticated %s', 'goliath-instagram-api'), "<strong>{$gins_client_user_name}</strong>" ) . '</p>';
 
         } else {
 
