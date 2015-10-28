@@ -48,9 +48,15 @@ function gins_get_instagram_last_picture(){
 
         if( ! is_wp_error( $instagram_last_picture_get ) ){
 
-            $instagram_last_picture = json_decode( wp_remote_retrieve_body( $instagram_last_picture_get ) );
+            $instagram_last_picture_body = json_decode( wp_remote_retrieve_body( $instagram_last_picture_get ) );
 
-            set_transient( 'instagram_last_picture', $instagram_last_picture, HOUR_IN_SECONDS );
+            if( $instagram_last_picture_body->meta->code != 400 ){
+
+                $instagram_last_picture = $instagram_last_picture_body;
+
+                set_transient( 'instagram_last_picture', $instagram_last_picture, HOUR_IN_SECONDS );
+            }
+
 
         }
     }
