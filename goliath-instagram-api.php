@@ -27,7 +27,6 @@ function gins_generate_sig($endpoint, $params, $secret) {
 
 function gins_get_instagram_last_picture(){
 
-    // http://eclaireur.dev/?code=384e9ededcdd460789742d9dd22df5d3
     $instagram_last_picture = get_transient( 'instagram_last_picture' );
 
     if( ! $instagram_last_picture ){
