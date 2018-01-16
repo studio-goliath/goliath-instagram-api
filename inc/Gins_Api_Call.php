@@ -26,6 +26,12 @@ Class Gins_Api_Call
 
     }
 
+    /**
+     * @param $endpoint
+     * @param array $params
+     *
+     * @return array|mixed|object|\WP_Error
+     */
     public function call( $endpoint, $params = array() )
     {
 
@@ -57,8 +63,12 @@ Class Gins_Api_Call
                     $response = json_decode( wp_remote_retrieve_body( $response ) );
 
                     set_transient( $transient_key, $response, HOUR_IN_SECONDS );
-                }
 
+                } else {
+
+                    $response = new WP_Error( '400', wp_remote_retrieve_response_message( $response ) );
+
+                }
 
             }
         }
